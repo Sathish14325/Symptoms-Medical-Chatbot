@@ -1,0 +1,80 @@
+Symptoms
+
+fatigue, cough, high_fever, breathlessness
+
+chills, high_fever, sweating, headache
+
+ continuous_sneezing, chills, cough, high_fever
+
+ skin_rash, pus_filled_pimples, blackheads, scurring
+
+ muscle_wasting, patches_in_throat, high_fever, extra_marital_contacts
+
+
+ joint_pain, vomiting, yellowish_skin, dark_urine
+
+
+
+// Diabetes
+   {
+    "age": 58,
+    "sex": 0,
+    "cp": 0,
+    "trestbps": 100,
+    "chol": 248,
+    "fbs": 0,
+    "restecg": 0,
+    "thalach": 122,
+    "exang": 0,
+    "oldpeak": 1,
+    "slope": 1,
+    "ca": 0,
+    "thal": 2
+  }
+
+
+// Heart prediction
+    {
+    "age": 58,
+    "sex": 0,
+    "cp": 0,
+    "trestbps": 100,
+    "chol": 248,
+    "fbs": 0,
+    "restecg": 0,
+    "thalach": 122,
+    "exang": 0,
+    "oldpeak": 1,
+    "slope": 1,
+    "ca": 0,
+    "thal": 2
+  }
+
+
+// kidney prediction
+  {
+    age: 53.0,
+    bp: 80.0,
+    sg: 1.02,
+    al: 2.0,
+    su: 1.0,
+    rbc: "normal",
+    pc: "abnormal",
+    pcc: "present",
+    ba: "notpresent",
+    bgr: 150.0,
+    bu: 45.0,
+    sc: 2.1,
+    sod: 138.0,
+    pot: 4.5,
+    hemo: 11.0,
+    pcv: 36,
+    wc: 8400,
+    rc: 4.5,
+    htn: "yes",
+    dm: "no",
+    cad: "no",
+    appet: "good",
+    pe: "no",
+    ane: "no"
+  }

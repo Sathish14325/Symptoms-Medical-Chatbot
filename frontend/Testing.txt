@@ -1,0 +1,32 @@
+**existing system symptom checker**
+for example "abdominal swelling, easy bruising, stool and urine color changes, and jaundice"
+if i give improper symptom it will give me as result [Unknown Disease - No valid symptoms provided]
+    that's why we are craeting a ai chatbot 
+
+for example "abdominal swelling, easy bruising, stool and urine color changes, and jaundice"
+o/p: *The symptoms of abdominal swelling, easy bruising, changes in stool and urine color, and jaundice may indicate liver disease. 
+    Liver dysfunction can cause bilirubin buildup, leading to jaundice and color changes in urine and stools. 
+    It can also result in ascites (abdominal swelling) and clotting issues from low platelets or clotting factor deficiencies. 
+    Consulting a healthcare professional for tests like liver function tests or an ultrasound is advisable to confirm the diagnosis.*
+
+
+
+
+for example :
+
+    1. I’ve had a fever, cold, and cough for the past two days.
+    2. What are some home remedies for fever and cold?
+    3. Can you suggest any medicine for fever and cold?
+    4. How can I prevent fever, cold, and cough?
+    5. which dotor should i consult for fever and cold
+
+
+
+for example :
+
+    i don't know , what is it on my head, i've been facing this issues like this past few weeks
+
+
+    image query
+        i don't know what to do , my baby spilled milk on their body
+        i don't know what to do , i've been facing like this past 1 month
