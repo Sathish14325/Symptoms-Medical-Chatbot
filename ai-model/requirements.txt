@@ -1,0 +1,39 @@
+# Flask-related
+flask
+flask-cors
+
+# FastAPI-related
+fastapi
+uvicorn
+python-multipart
+pillow
+
+# Environment management
+python-dotenv
+
+# Logging
+loguru
+
+# MongoDB
+pymongo
+
+# Data handling
+numpy
+pandas
+joblib
+
+# Hugging Face embeddings
+sentence-transformers
+
+# LangChain modules
+langchain
+langchain-community
+langchain-mongodb
+langchain-huggingface
+langchain-groq
+
+# PDF processing
+pdfplumber
+
+# HTTP requests
+requests
