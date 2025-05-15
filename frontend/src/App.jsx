@@ -11,7 +11,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import SymptomChecker from "./pages/SymptomChecker";
 import ImageQueryForm from "./pages/ImageQueryForm";
-import ImageQueryHistory from "./pages/ImageQueryHistory";
+import ServicesPage from "./pages/ServicesPage";
+import DiabetesPredictionPage from "./pages/DiabetesPredictionPage";
+import KidneyPrediction from "./pages/KidneyPrediction";
+import HeartPrediction from "./pages/HeartPrediction";
+import FindDoctor from "./pages/FindDoctor";
 
 function App() {
   return (
@@ -30,8 +34,15 @@ function App() {
           <Route path="/tools" element={<ToolsPage />} />
           <Route path="/symptom-checker" element={<SymptomChecker />} />
           <Route path="/image-analysis" element={<ImageQueryForm />} />
-          <Route path="/image-analysis-his" element={<ImageQueryHistory />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/diabetes" element={<DiabetesPredictionPage />} />
+          <Route path="/heart" element={<HeartPrediction />} />
+          <Route
+            path="/kidney-disease-predict"
+            element={<KidneyPrediction />}
+          />
         </Route>
+        <Route path="/find-docters" element={<FindDoctor />} />
       </Routes>
     </BrowserRouter>
   );

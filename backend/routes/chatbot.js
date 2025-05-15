@@ -64,8 +64,12 @@ router.put("/sessions/:sessionId", async (req, res) => {
   const { sessionId } = req.params;
   const { newTitle } = req.body;
 
-  if (!newTitle) {
-    return res.status(400).json({ error: "New title is required" });
+  console.log("Received rename request:", { sessionId, newTitle });
+
+  if (!newTitle || typeof newTitle !== "string") {
+    return res
+      .status(400)
+      .json({ error: "New title is required and must be a string" });
   }
 
   try {
@@ -79,10 +83,27 @@ router.put("/sessions/:sessionId", async (req, res) => {
       return res.status(404).json({ error: "Session not found" });
     }
 
-    res.json({ success: true, title: session.title });
+    return res.json({ success: true, title: session.title });
   } catch (err) {
-    console.error("Rename session error:", err);
-    res.status(500).json({ error: "Failed to rename session" });
+    console.error("Rename session error:", err.message);
+    return res.status(500).json({ error: "Failed to rename session" });
+  }
+});
+
+router.delete("/sessions/:sessionId", async (req, res) => {
+  const { sessionId } = req.params;
+
+  try {
+    const result = await ChatSession.findOneAndDelete({ sessionId });
+
+    if (!result) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+
+    return res.json({ success: true, message: "Session deleted" });
+  } catch (err) {
+    console.error("Delete session error:", err.message);
+    return res.status(500).json({ error: "Failed to delete session" });
   }
 });
 

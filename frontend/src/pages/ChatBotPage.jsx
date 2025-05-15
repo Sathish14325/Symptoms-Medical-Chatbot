@@ -97,16 +97,18 @@ const ChatbotPage = () => {
     }
   };
 
-  const renameSession = async (id) => {
-    const newTitle = prompt("Enter a new session title:");
-    if (!newTitle) return;
+  const renameSession = async (sessionId, newTitle) => {
     try {
-      await axios.put(`http://localhost:5000/api/chatbot/sessions/${id}`, {
-        title: newTitle,
+      const res = await axios.put(`/api/chatbot/sessions/${sessionId}`, {
+        newTitle: newTitle.trim(),
       });
-      fetchSessions();
-    } catch (err) {
-      console.error("Failed to rename session", err);
+      console.log("Session renamed:", res.data);
+      fetchSessions(); // Refresh the list
+    } catch (error) {
+      console.error(
+        "Failed to rename session",
+        error.response?.data || error.message
+      );
     }
   };
 
@@ -216,7 +218,12 @@ const ChatbotPage = () => {
               {session.title || new Date(session.createdAt).toLocaleString()}
             </button>
             <button
-              onClick={() => renameSession(session.sessionId)}
+              onClick={() => {
+                const newTitle = prompt("Enter new session title:");
+                if (newTitle) {
+                  renameSession(session.sessionId, newTitle);
+                }
+              }}
               className="text-sm text-blue-500 hover:text-blue-700"
               title="Rename"
             >
