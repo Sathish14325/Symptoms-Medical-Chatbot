@@ -32,11 +32,9 @@ Welcome to the future of AI-powered healthcare! This project is a smart, convers
 
 ```bash
 Symptoms-Medical-Chatbot/
-├── client/ # React frontend
-├── server/ # Node.js + Express backend
-├── ml-models/ # Python ML models for prediction
-├── image-analysis/ # FastAPI for image diagnosis
-├── database/ # MongoDB configs & schemas
+├── frontend/ # React frontend
+├── backend/ # Node.js + Express backend
+├── al-model/ # Python ML models for prediction
 └── README.md
 ```
 
@@ -84,7 +82,7 @@ cd Symptoms-Medical-Chatbot
 2. **Frontend Setup:**
 
 ```bash
-cd client
+cd frontend
 npm install
 npm run dev
 ```
@@ -92,7 +90,7 @@ npm run dev
 3. **Backend Setup:**
 
 ```bash
-cd server
+cd backend
 npm install
 npm run start
 ```

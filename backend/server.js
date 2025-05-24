@@ -2,10 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
-const healthPredict = require("./routes/healthPredict");
 const promptHistoryRoutes = require("./routes/promptHistory");
 const authMiddleware = require("./middleware/authMiddleware");
-const heartRoutes = require("./routes/heartRoutes");
 const findDoctorRoute = require("./routes/findDoctorRoute");
 // chatbot
 const chatbotRoutes = require("./routes/chatbot");
@@ -25,9 +23,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // serve u
 app.use("/api/auth", authRoutes);
 app.use("/api/healthPredict", healthPredict);
 app.use("/api/history", promptHistoryRoutes);
-app.use("/api/predict-diabetes", require("./routes/diabetes"));
-app.use("/api/predict-kidney", require("./routes/kidneyPrediction"));
-app.use("/api/predict-heart", heartRoutes);
 app.use("/api/chatbot", chatbotRoutes);
 app.use("/api/find-doctor", findDoctorRoute);
 
