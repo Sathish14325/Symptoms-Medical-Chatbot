@@ -30,6 +30,7 @@ Welcome to the future of AI-powered healthcare! This project is a smart, convers
 
 ## 📁 Project Structure
 
+```bash
 Symptoms-Medical-Chatbot/
 ├── client/ # React frontend
 ├── server/ # Node.js + Express backend
@@ -37,6 +38,7 @@ Symptoms-Medical-Chatbot/
 ├── image-analysis/ # FastAPI for image diagnosis
 ├── database/ # MongoDB configs & schemas
 └── README.md
+```
 
 ---
 
