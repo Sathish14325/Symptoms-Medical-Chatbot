@@ -25,53 +25,63 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+    <nav className="backdrop-blur-md bg-gray-900/60 ring-1 ring-white/10 text-white shadow-md top-0 z-50 w-full p-2.5">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <h1 className="text-xl font-bold tracking-wider">
-          <Link to={"/"}>🧬 MediBot</Link>
+          <Link to="/" className="hover:text-blue-400 transition duration-300">
+            🧬 MediBot
+          </Link>
         </h1>
 
-        {/* Desktop Links */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-6 items-center">
           {user && (
             <>
-              <Link to="/chatbot" className="hover:text-blue-200">
-                🤖 Chatbot
-              </Link>
-              <Link to="/symptom-checker" className="hover:text-blue-200">
-                🛠️ Symptom Checker
-              </Link>
-              <Link to="/image-analysis" className="hover:text-blue-200">
-                🤖 Image Analysis
-              </Link>
-              <Link to="/services" className="hover:text-blue-100">
-                🤖 Services
-              </Link>
+              {["/chatbot", "/symptom-checker", "/image-analysis"].map(
+                (path, i) => {
+                  const labels = [
+                    "🤖 Chatbot",
+                    "🛠️ Symptom Checker",
+                    "🧠 Image Analysis",
+                  ];
+                  return (
+                    <Link
+                      key={i}
+                      to={path}
+                      className="relative group hover:text-blue-400 transition duration-300"
+                    >
+                      <span className="pb-1 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-400 after:transition-all after:duration-300 group-hover:after:w-full">
+                        {labels[i]}
+                      </span>
+                    </Link>
+                  );
+                }
+              )}
             </>
           )}
         </div>
 
-        {/* Profile / Auth Button */}
+        {/* Profile / Auth Section */}
         <div className="flex items-center gap-4 relative">
           {user ? (
             <div className="relative" ref={dropdownRef}>
               <img
                 src={`http://localhost:5000/uploads/${user.photo}`}
                 alt="Profile"
-                className="w-10 h-10 rounded-full cursor-pointer ring-2 ring-white hover:ring-blue-300 transition duration-300"
+                className="w-10 h-10 rounded-full cursor-pointer ring-2 ring-white hover:ring-blue-400 transition duration-300"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white text-gray-800 shadow-lg rounded-lg py-2">
+                <div className="absolute right-0 mt-2 w-40 backdrop-blur-md bg-gray-800/80 ring-1 ring-white/10 text-white shadow-lg rounded-lg py-2">
                   <Link
                     to="/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-700 transition duration-200"
                   >
                     🧑 Dashboard
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                    className="w-full text-left px-4 py-2 hover:bg-gray-700 transition duration-200"
                   >
                     🚪 Logout
                   </button>
@@ -82,13 +92,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/login"
-                className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100"
+                className="bg-white/10 ring-1 ring-white/20 text-white px-4 py-2 rounded hover:bg-white/20 transition"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100"
+                className="bg-white/10 ring-1 ring-white/20 text-white px-4 py-2 rounded hover:bg-white/20 transition"
               >
                 Sign Up
               </Link>
@@ -120,18 +130,30 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && user && (
-        <div className="md:hidden px-6 pb-4 flex flex-col space-y-2 bg-blue-500">
-          <Link to="/chatbot" className="hover:text-blue-100">
-            🤖 Chatbot
+        <div className="md:hidden px-6 pb-4 flex flex-col space-y-3 backdrop-blur-md bg-gray-800/70 text-white">
+          <Link
+            to="/chatbot"
+            className="group hover:text-blue-400 transition duration-300"
+          >
+            <span className="relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-400 after:transition-all after:duration-300 group-hover:after:w-full">
+              🤖 Chatbot
+            </span>
           </Link>
-          <Link to="/symptom-checker" className="hover:text-blue-100">
-            🛠️ Symptom Checker
+          <Link
+            to="/symptom-checker"
+            className="group hover:text-blue-400 transition duration-300"
+          >
+            <span className="relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-400 after:transition-all after:duration-300 group-hover:after:w-full">
+              🛠️ Symptom Checker
+            </span>
           </Link>
-          <Link to="/image-analysis" className="hover:text-blue-100">
-            🤖 Image Analysis
-          </Link>
-          <Link to="/services" className="hover:text-blue-100">
-            🤖 Services
+          <Link
+            to="/image-analysis"
+            className="group hover:text-blue-400 transition duration-300"
+          >
+            <span className="relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-blue-400 after:transition-all after:duration-300 group-hover:after:w-full">
+              🧠 Image Analysis
+            </span>
           </Link>
         </div>
       )}

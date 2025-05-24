@@ -6,15 +6,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ChatBotPage from "./pages/ChatBotPage";
-import ToolsPage from "./pages/ToolsPage";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import SymptomChecker from "./pages/SymptomChecker";
 import ImageQueryForm from "./pages/ImageQueryForm";
-import ServicesPage from "./pages/ServicesPage";
-import DiabetesPredictionPage from "./pages/DiabetesPredictionPage";
-import KidneyPrediction from "./pages/KidneyPrediction";
-import HeartPrediction from "./pages/HeartPrediction";
 import FindDoctor from "./pages/FindDoctor";
 
 function App() {
@@ -31,18 +27,11 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/chatbot" element={<ChatBotPage />} />
-          <Route path="/tools" element={<ToolsPage />} />
           <Route path="/symptom-checker" element={<SymptomChecker />} />
           <Route path="/image-analysis" element={<ImageQueryForm />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/diabetes" element={<DiabetesPredictionPage />} />
-          <Route path="/heart" element={<HeartPrediction />} />
-          <Route
-            path="/kidney-disease-predict"
-            element={<KidneyPrediction />}
-          />
+          <Route path="/find-docters" element={<FindDoctor />} />
+          <Route />
         </Route>
-        <Route path="/find-docters" element={<FindDoctor />} />
       </Routes>
     </BrowserRouter>
   );

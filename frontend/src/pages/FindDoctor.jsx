@@ -32,15 +32,17 @@ const FindDoctor = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8 p-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">Find a Doctor</h2>
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-900 rounded-xl shadow-lg text-white transition">
+      <h2 className="text-3xl font-bold mb-6 text-center text-purple-400">
+        Find a Doctor
+      </h2>
       <form onSubmit={handleSearch} className="space-y-4">
         <input
           type="text"
           placeholder="Specialist (e.g., Cardiologist)"
           value={specialist}
           onChange={(e) => setSpecialist(e.target.value)}
-          className="w-full border border-gray-300 p-2 rounded"
+          className="w-full bg-gray-800 border border-gray-700 text-white placeholder-gray-400 p-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
           required
         />
         <input
@@ -48,49 +50,38 @@ const FindDoctor = () => {
           placeholder="Location (e.g., Chennai)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="w-full border border-gray-300 p-2 rounded"
+          className="w-full bg-gray-800 border border-gray-700 text-white placeholder-gray-400 p-3 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
           required
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded transition disabled:opacity-50"
         >
           {loading ? "Searching..." : "Search"}
         </button>
       </form>
 
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {error && <p className="text-red-400 mt-4 text-center">{error}</p>}
 
       <div className="mt-6">
         {doctors.length > 0 ? (
           <ul className="space-y-4">
             {doctors.map((doc, idx) => (
-              // <li
-              //   key={idx}
-              //   className="border border-gray-200 p-4 rounded shadow-sm"
-              // >
-              //   <h3 className="text-lg font-semibold">{doc.name}</h3>
-              //   <p className="text-gray-600">{doc.category}</p>
-              //   <p className="text-sm text-gray-500">{doc.address}</p>
-              //   <p className="text-xs text-gray-400">
-              //     Lat: {doc.lat}, Lng: {doc.lon}
-              //   </p>
-              // </li>
               <li
                 key={idx}
-                className="border border-gray-200 p-4 rounded shadow-sm hover:bg-gray-50 transition"
+                className="bg-gray-800 border border-gray-700 p-4 rounded hover:bg-gray-700 transition"
               >
                 <a
                   href={`https://www.google.com/maps/search/?api=1&query=${doc.lat},${doc.lon}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-purple-400 hover:underline"
                 >
                   <h3 className="text-lg font-semibold">{doc.name}</h3>
                 </a>
-                <p className="text-gray-600">{doc.category}</p>
-                <p className="text-sm text-gray-500">{doc.address}</p>
-                <p className="text-xs text-gray-400">
+                <p className="text-gray-300">{doc.category}</p>
+                <p className="text-sm text-gray-400">{doc.address}</p>
+                <p className="text-xs text-gray-500">
                   Lat: {doc.lat}, Lng: {doc.lon}
                 </p>
               </li>
