@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const FindDoctor = () => {
-  const BASE_URL = process.env.BACKEND_URL;
+  const BASE_URL = import.meta.env.BACKEND_URL;
   const [specialist, setSpecialist] = useState("");
   const [location, setLocation] = useState("");
   const [doctors, setDoctors] = useState([]);

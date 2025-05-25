@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const BASE_URL = process.env.BACKEND_URL;
+  const BASE_URL = import.meta.env.BACKEND_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);

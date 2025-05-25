@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 
 function ImageQueryForm() {
-  const BASE_URL = process.env.BACKEND_URL;
+  const BASE_URL = import.meta.env.BACKEND_URL;
   const [file, setFile] = useState(null);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
