@@ -3,6 +3,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 
 function ImageQueryForm() {
+  const BASE_URL = process.env.BACKEND_URL;
   const [file, setFile] = useState(null);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
@@ -26,7 +27,7 @@ function ImageQueryForm() {
       );
 
       await axios.post(
-        "http://localhost:5000/api/history",
+        `${BASE_URL}/api/history`,
         {
           query,
           answer: response.data.maverick,

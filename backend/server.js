@@ -5,6 +5,7 @@ const authRoutes = require("./routes/authRoutes");
 const promptHistoryRoutes = require("./routes/promptHistory");
 const authMiddleware = require("./middleware/authMiddleware");
 const findDoctorRoute = require("./routes/findDoctorRoute");
+const healthPredict = require("./routes/healthPredict");
 // chatbot
 const chatbotRoutes = require("./routes/chatbot");
 const session = require("express-session");
@@ -15,8 +16,15 @@ const path = require("path");
 dotenv.config();
 connectDB();
 
+const allowedOrigins = ["https://medical-chatbot-olive.vercel.app"];
+
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true, // only if using cookies/auth
+  })
+);
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // serve uploaded images
 

@@ -23,16 +23,23 @@ for example :
 
 
 for example:
+
     1. I’ve been experiencing skin rashes and itching for the past two days.
-
     2. What are some home remedies for skin rashes and itching?
-
     3. Can you suggest any medicine for skin allergies or rashes?
-
     4. How can I prevent skin rashes and allergic reactions?
-
     5. Which doctor should I consult for skin-related issues like rashes and itching?
 
+
+    1. I’ve been experiencing frequent headaches and mild sensitivity to light for the past few days.
+
+    2. What are some home remedies for relieving headaches naturally?
+
+    3. Can you suggest any over-the-counter medicine for headaches?
+
+    4. How can I prevent frequent headaches or migraines in the future?
+
+    5. Which doctor should I consult for recurring headaches and related symptoms?
 
 for example :
 
@@ -42,3 +49,7 @@ for example :
     image query
         i don't know what to do , my baby spilled milk on their body
         i don't know what to do , i've been facing like this past 1 month
+        this is my hand condition and suggest how to treat or remove it.
+
+        this is my x-ray ,tell me what is happend on my hand
+        this is my scan report, tell me how is my baby growth

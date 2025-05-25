@@ -28,7 +28,10 @@ const Navbar = () => {
     <nav className="backdrop-blur-md bg-gray-900/60 ring-1 ring-white/10 text-white shadow-md top-0 z-50 w-full p-2.5">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <h1 className="text-xl font-bold tracking-wider">
-          <Link to="/" className="hover:text-blue-400 transition duration-300">
+          <Link
+            to="/"
+            className="hover:text-blue-400 transition duration-300 md:text-4xl sm:text-2xl"
+          >
             🧬 MediBot
           </Link>
         </h1>

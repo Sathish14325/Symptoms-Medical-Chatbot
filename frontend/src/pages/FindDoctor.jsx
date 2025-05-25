@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const FindDoctor = () => {
+  const BASE_URL = process.env.BACKEND_URL;
   const [specialist, setSpecialist] = useState("");
   const [location, setLocation] = useState("");
   const [doctors, setDoctors] = useState([]);
@@ -15,13 +16,10 @@ const FindDoctor = () => {
     setDoctors([]);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/find-doctor",
-        {
-          specialist,
-          location,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/find-doctor`, {
+        specialist,
+        location,
+      });
 
       setDoctors(response.data.doctors);
     } catch (err) {

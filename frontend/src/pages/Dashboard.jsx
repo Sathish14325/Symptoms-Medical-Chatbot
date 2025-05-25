@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
+  const BASE_URL = process.env.BACKEND_URL;
+
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
@@ -33,12 +35,12 @@ const Dashboard = () => {
     const fetchHistory = async () => {
       try {
         const symptomRes = await axios.get(
-          "http://localhost:5000/api/healthPredict/history",
+          `${BASE_URL}/api/healthPredict/history`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        const imageRes = await axios.get("http://localhost:5000/api/history", {
+        const imageRes = await axios.get(`${BASE_URL}/api/history`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSymptomHistory(symptomRes.data);

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ResultCard from "../components/ResultCard";
-import Navbar from "../components/Navbar";
 import { Info, HeartPulse } from "lucide-react";
 
 function SymptomChecker() {
+  const BASE_URL = process.env.BACKEND_URL;
   const [symptoms, setSymptoms] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
@@ -28,7 +28,7 @@ function SymptomChecker() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/healthPredict/predict",
+        `${BASE_URL}/api/healthPredict/predict`,
         { symptoms: symptomsArray },
         {
           headers: {

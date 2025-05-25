@@ -3,6 +3,9 @@ import MessageBubble from "../components/MessageBubble";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Mic } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+
+const BASE_URL = process.env.BACKEND_URL;
 
 const getSessionId = () => {
   let sessionId = localStorage.getItem("sessionId");
@@ -50,14 +53,12 @@ const ChatbotPage = () => {
     setQuestion("");
     setLoading(true);
 
+    `${BASE_URL}/api/chatbot/ask`;
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/chatbot/ask",
-        {
-          question,
-          sessionId: sessionId.current,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/chatbot/ask`, {
+        question,
+        sessionId: sessionId.current,
+      });
 
       const botMessage = { sender: "bot", text: response.data.answer };
       const updatedMessages = [...messages, userMessage, botMessage];
@@ -87,10 +88,9 @@ const ChatbotPage = () => {
     sessionId.current = id;
     localStorage.setItem("sessionId", id);
 
+    `${BASE_URL}/api/chatbot/ask`;
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/chatbot/history/${id}`
-      );
+      const res = await axios.get(`${BASE_URL}/api/chatbot/history/${id}`);
       setMessages(res.data);
     } catch (err) {
       console.error("Failed to load messages", err);
@@ -99,12 +99,9 @@ const ChatbotPage = () => {
 
   const renameSession = async (sessionId, newTitle) => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/chatbot/sessions/${sessionId}`,
-        {
-          newTitle: newTitle.trim(),
-        }
-      );
+      await axios.put(`${BASE_URL}/api/chatbot/sessions/${sessionId}`, {
+        newTitle: newTitle.trim(),
+      });
       fetchSessions();
     } catch (error) {
       console.error("Rename failed", error.response?.data || error.message);
@@ -115,7 +112,7 @@ const ChatbotPage = () => {
     if (!window.confirm("Delete this session?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/chatbot/sessions/${id}`);
+      await axios.delete(`${BASE_URL}/api/chatbot/sessions/${id}`);
       if (id === activeSession) {
         const newId = Date.now().toString();
         localStorage.setItem("sessionId", newId);
@@ -158,7 +155,7 @@ const ChatbotPage = () => {
 
   const fetchSessions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/chatbot/sessions");
+      const res = await axios.get(`${BASE_URL}/api/chatbot/sessions`);
       setSessionList(res.data);
     } catch (err) {
       console.error("Fetch sessions failed", err);
@@ -170,7 +167,7 @@ const ChatbotPage = () => {
     const fetchHistory = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/chatbot/history/${sessionId.current}`
+          `${BASE_URL}/api/chatbot/history/${sessionId.current}`
         );
         setMessages(res.data);
       } catch (err) {
@@ -254,6 +251,7 @@ const ChatbotPage = () => {
 
         {/* Sessions List */}
         <div className="space-y-2">
+          <h4 className="text-3xl text-center mx-2">Sessions</h4>
           {sessionList.map((session) => (
             <div key={session.sessionId} className="flex items-center gap-2">
               <button
@@ -393,158 +391,5 @@ const ChatbotPage = () => {
     </div>
   );
 };
-
-// return (
-//   <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white flex flex-col md:flex-row">
-//     {/* Sidebar */}
-//     <div
-//       className={`fixed md:static top-0 left-0 z-40 h-full w-64 bg-gray-900 border-r border-gray-700 p-4 space-y-4 overflow-y-auto transition-transform duration-300 ${
-//         showSidebar ? "translate-x-0" : "-translate-x-full"
-//       } md:translate-x-0`}
-//     >
-//       <div className="flex justify-between items-center md:hidden mb-4">
-//         <h2 className="text-xl font-bold text-white">🗂 Sessions</h2>
-//         <button
-//           className="text-red-400 text-2xl"
-//           onClick={() => setShowSidebar(false)}
-//         >
-//           ✕
-//         </button>
-//       </div>
-
-//       {sessionList.map((session) => (
-//         <div key={session.sessionId} className="flex items-center gap-2">
-//           <button
-//             onClick={() => {
-//               handleSessionClick(session.sessionId);
-//               setShowSidebar(false);
-//             }}
-//             className={`flex-1 text-left px-4 py-2 rounded-xl transition text-sm ${
-//               session.sessionId === activeSession
-//                 ? "bg-blue-600 text-white"
-//                 : "hover:bg-gray-700 text-gray-300"
-//             }`}
-//           >
-//             {session.title || new Date(session.createdAt).toLocaleString()}
-//           </button>
-//           <button
-//             onClick={() => {
-//               const newTitle = prompt("Enter new session title:");
-//               if (newTitle) renameSession(session.sessionId, newTitle);
-//             }}
-//             className="text-sm text-yellow-400 hover:text-yellow-500"
-//             title="Rename"
-//           >
-//             ✏️
-//           </button>
-//           <button
-//             onClick={() => deleteSession(session.sessionId)}
-//             className="text-sm text-red-400 hover:text-red-600"
-//             title="Delete"
-//           >
-//             🗑
-//           </button>
-//         </div>
-//       ))}
-
-//       <button
-//         onClick={() => {
-//           const newId = Date.now().toString();
-//           localStorage.setItem("sessionId", newId);
-//           sessionId.current = newId;
-//           setActiveSession(newId);
-//           setMessages([]);
-//           fetchSessions();
-//           setShowSidebar(false);
-//         }}
-//         className="w-full text-left px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition"
-//       >
-//         ➕ New Session
-//       </button>
-//     </div>
-
-//     {/* Chat Area */}
-//     <div className="flex-1 px-4 py-6 flex flex-col">
-//       <div className="flex justify-between items-center mb-4 md:hidden">
-//         <button
-//           className="text-white text-2xl"
-//           onClick={() => setShowSidebar(!showSidebar)}
-//         >
-//           ☰
-//         </button>
-//         <h1 className="text-xl font-bold text-white">MediAI Care</h1>
-//       </div>
-
-//       <div className="max-w-3xl mx-auto mb-6 text-center">
-//         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">
-//           🤖 MediAI Care Assistant
-//         </h1>
-//         <p className="text-base md:text-lg text-gray-300">
-//           Ask your medical questions and get instant, AI-powered responses.
-//         </p>
-//       </div>
-
-//       <div className="bg-gray-800 shadow-2xl rounded-3xl w-full max-w-3xl mx-auto flex-1 flex flex-col overflow-hidden">
-//         <div className="bg-blue-600 text-white text-lg md:text-xl font-bold p-4 md:p-5 rounded-t-3xl text-center">
-//           Chat with MediAI Care
-//         </div>
-
-//         <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-800">
-//           {messages.map((msg, index) => (
-//             <motion.div
-//               key={index}
-//               initial={{ opacity: 0, y: 10 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.3 }}
-//             >
-//               <MessageBubble
-//                 sender={msg.sender}
-//                 text={msg.text}
-//                 isLoading={msg.isLoading}
-//                 isButton={msg.isButton}
-//               />
-//             </motion.div>
-//           ))}
-//           {loading && (
-//             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-//               <MessageBubble sender="bot" text="Typing..." isLoading />
-//             </motion.div>
-//           )}
-//           <div ref={bottomRef} />
-//         </div>
-
-//         <div className="p-4 bg-gray-900 border-t border-gray-700 flex flex-col sm:flex-row gap-2">
-//           <input
-//             type="text"
-//             className="w-full sm:flex-1 border border-gray-600 rounded-xl px-4 py-2 bg-gray-800 text-white shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-//             placeholder="Ask a medical question..."
-//             value={question}
-//             onChange={(e) => setQuestion(e.target.value)}
-//             onKeyDown={(e) => e.key === "Enter" && handleSend()}
-//           />
-//           <div className="flex gap-2">
-//             <button
-//               onClick={toggleVoiceInput}
-//               className={`border px-3 py-2 rounded-xl transition ${
-//                 listening
-//                   ? "bg-red-100 border-red-400 text-red-600"
-//                   : "bg-gray-800 border-gray-600 text-white"
-//               } hover:bg-gray-700`}
-//               title={listening ? "Stop Listening" : "Start Voice Input"}
-//             >
-//               <Mic size={20} />
-//             </button>
-//             <button
-//               className="bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition transform hover:scale-105"
-//               onClick={handleSend}
-//             >
-//               Send
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
 
 export default ChatbotPage;
