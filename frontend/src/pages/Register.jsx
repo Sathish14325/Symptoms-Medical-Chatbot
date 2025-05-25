@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Register = () => {
-  const BASE_URL = import.meta.env.BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const [form, setForm] = useState({
     name: "",
     email: "",

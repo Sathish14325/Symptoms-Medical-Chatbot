@@ -4,7 +4,7 @@ import ResultCard from "../components/ResultCard";
 import { Info, HeartPulse } from "lucide-react";
 
 function SymptomChecker() {
-  const BASE_URL = import.meta.env.BACKEND_URL;
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const [symptoms, setSymptoms] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");

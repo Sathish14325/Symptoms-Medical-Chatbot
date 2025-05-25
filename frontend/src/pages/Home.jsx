@@ -68,6 +68,8 @@ const FAQItem = ({ question, answer }) => {
 };
 
 const Home = () => {
+  // console.log(import.meta.env.VITE_API_URL);
+  // console.log(import.meta.env.VITE_BACKEND_URL);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-slate-50 px-6 py-16">
       <div className="max-w-6xl mx-auto text-center backdrop-blur-md bg-white/5 p-6 rounded-xl shadow-2xl shadow-pink-400/10">

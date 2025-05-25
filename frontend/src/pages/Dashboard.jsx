@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
-  const BASE_URL = import.meta.env.BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");

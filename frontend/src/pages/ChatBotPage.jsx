@@ -5,9 +5,8 @@ import { motion } from "framer-motion";
 import { Mic } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
-const BASE_URL = import.meta.env.BACKEND_URL;
-
 const getSessionId = () => {
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   console.log(BASE_URL);
 
   let sessionId = localStorage.getItem("sessionId");
