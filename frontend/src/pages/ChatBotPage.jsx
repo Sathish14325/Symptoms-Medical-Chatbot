@@ -8,6 +8,8 @@ import ReactMarkdown from "react-markdown";
 const BASE_URL = process.env.BACKEND_URL;
 
 const getSessionId = () => {
+  console.log(BASE_URL);
+
   let sessionId = localStorage.getItem("sessionId");
   if (!sessionId) {
     sessionId = Date.now().toString();
