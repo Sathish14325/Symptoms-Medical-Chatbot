@@ -16,7 +16,10 @@ const path = require("path");
 dotenv.config();
 connectDB();
 
-const allowedOrigins = ["https://medical-chatbot-olive.vercel.app"];
+const allowedOrigins = [
+  "https://medical-chatbot-olive.vercel.app",
+  "http://localhost:5173",
+];
 
 const app = express();
 app.use(
